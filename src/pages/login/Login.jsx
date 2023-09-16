@@ -6,7 +6,6 @@ import { formLabelClasses } from '@mui/joy/FormLabel';
 import Typography from '@mui/joy/Typography';
 import LoginForm from './LoginForm';
 
-
 export default function Login() {
   return (
     <>

@@ -5,18 +5,43 @@ import Checkbox from "@mui/joy/Checkbox";
 import FormControl from "@mui/joy/FormControl";
 import FormLabel from "@mui/joy/FormLabel";
 import Link from "@mui/joy/Link";
-import Input from "@mui/joy/Input";
+import { Alert } from "@mui/joy";
+import { useRef } from "react";
+import { useAuth } from "../../contexts/AuthContext";
 
 function LoginForm() {
+  const emailRef = useRef();
+  const passRef = useRef();
+  const { signup, error } = useAuth()
+
+  async function handleSubmit(e) {
+      e.preventDefault();
+      const email = emailRef.current.value;
+      const password = passRef.current.value;
+    try {
+      await signup(email, password);
+    } catch {}
+  }
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
+      {error && <Alert severity="error">{error}</Alert>}
       <FormControl required>
         <FormLabel>Email</FormLabel>
-        <Input type="email" name="email" />
+        <input
+          className="border rounded-lg text-sm p-1 px-[10px] py-[7px] shadow-sm bg-slate-50"
+          type="email"
+          name="email"
+          ref={emailRef}
+        />
       </FormControl>
       <FormControl required>
         <FormLabel>Password</FormLabel>
-        <Input type="password" name="password" />
+        <input
+          className="border rounded-lg text-sm p-1 px-[10px] py-[7px] shadow-sm bg-slate-50"
+          type="password"
+          name="password"
+          ref={passRef}
+        />
       </FormControl>
       <Box
         sx={{
