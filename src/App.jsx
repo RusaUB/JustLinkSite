@@ -19,8 +19,7 @@ function App() {
               <ProtectedRoute>
                 <DashBoard />
               </ProtectedRoute>
-            }
-          ></Route>
+            }></Route>
         </Routes>
       </CssVarsProvider>
     </AuthProvider>
