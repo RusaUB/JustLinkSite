@@ -2,6 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
 
+
 const firebaseConfig = {
   apiKey: "AIzaSyCFDb7dNz0xZD-UE4H3rZm4qDgS2Vki2NA",
   authDomain: "reactnative-b900a.firebaseapp.com",
