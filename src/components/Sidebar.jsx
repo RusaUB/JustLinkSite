@@ -31,6 +31,8 @@ import BadgeRoundedIcon from "@mui/icons-material/BadgeRounded";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 import { closeSidebar } from "../utils";
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase";
 
 function Toggler({ defaultExpanded = false, renderToggle, children }) {
   const [open, setOpen] = React.useState(defaultExpanded);
@@ -310,7 +312,7 @@ export default function Sidebar() {
           <Typography level="title-sm">Siriwat K.</Typography>
           <Typography level="body-xs">siriwatk@test.com</Typography>
         </Box>
-        <IconButton size="sm" variant="plain" color="neutral">
+        <IconButton size="sm" variant="plain" color="neutral" onClick={()=>{signOut(auth)}}>
           <LogoutRoundedIcon />
         </IconButton>
       </Box>
