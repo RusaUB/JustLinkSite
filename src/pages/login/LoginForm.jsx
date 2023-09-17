@@ -8,11 +8,13 @@ import Link from "@mui/joy/Link";
 import { Alert } from "@mui/joy";
 import { useRef } from "react";
 import { useAuth } from "../../contexts/AuthContext";
+import { Navigate } from "react-router-dom";
 
 function LoginForm() {
   const emailRef = useRef();
   const passRef = useRef();
-  const { signup, error } = useAuth()
+  const { signup, error,currentUser } = useAuth()
+  console.log(currentUser)
 
   async function handleSubmit(e) {
       e.preventDefault();
