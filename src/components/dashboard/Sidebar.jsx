@@ -30,9 +30,10 @@ import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import BadgeRoundedIcon from "@mui/icons-material/BadgeRounded";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
-import { closeSidebar } from "../utils";
+import { closeSidebar } from "../../utils";
 import { signOut } from "firebase/auth";
-import { auth } from "../firebase";
+import { auth } from "../../firebase";
+import { Link } from "react-router-dom";
 
 function Toggler({ defaultExpanded = false, renderToggle, children }) {
   const [open, setOpen] = React.useState(defaultExpanded);
@@ -233,9 +234,11 @@ export default function Sidebar() {
               )}
             >
               <List sx={{ gap: 0.5 }}>
-                <ListItem sx={{ mt: 0.5 }}>
-                  <ListItemButton selected>My profile</ListItemButton>
-                </ListItem>
+                  <ListItem sx={{ mt: 0.5 }}>
+                  <Link style={{width:'100%'}} to={'/profile'}>
+                    <ListItemButton selected>My profile</ListItemButton>
+                  </Link>
+                  </ListItem>
                 <ListItem>
                   <ListItemButton>Create a new user</ListItemButton>
                 </ListItem>
@@ -245,61 +248,15 @@ export default function Sidebar() {
               </List>
             </Toggler>
           </ListItem>
-        </List>
-
-        <List
-          size="sm"
-          sx={{
-            mt: "auto",
-            flexGrow: 0,
-            "--ListItem-radius": (theme) => theme.vars.radius.sm,
-            "--List-gap": "8px",
-            mb: 2,
-          }}
-        >
           <ListItem>
-            <ListItemButton>
-              <SupportRoundedIcon />
-              Support
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton>
-              <SettingsRoundedIcon />
-              Settings
-            </ListItemButton>
+            <Link style={{ width: "100%" }} to="/settings">
+              <ListItemButton>
+                <SettingsRoundedIcon />
+                Settings
+              </ListItemButton>
+            </Link>
           </ListItem>
         </List>
-        <Card
-          invertedColors
-          variant="soft"
-          color="warning"
-          size="sm"
-          sx={{ boxShadow: "none" }}
-        >
-          <Stack
-            direction="row"
-            justifyContent="space-between"
-            alignItems="center"
-          >
-            <Typography level="title-sm">Used space</Typography>
-            <IconButton size="sm">
-              <CloseRoundedIcon />
-            </IconButton>
-          </Stack>
-          <Typography level="body-xs">
-            Your team has used 80% of your available space. Need more?
-          </Typography>
-          <LinearProgress
-            variant="outlined"
-            value={80}
-            determinate
-            sx={{ my: 1 }}
-          />
-          <Button size="sm" variant="solid">
-            Upgrade plan
-          </Button>
-        </Card>
       </Box>
       <Divider />
       <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
@@ -312,7 +269,14 @@ export default function Sidebar() {
           <Typography level="title-sm">Siriwat K.</Typography>
           <Typography level="body-xs">siriwatk@test.com</Typography>
         </Box>
-        <IconButton size="sm" variant="plain" color="neutral" onClick={()=>{signOut(auth)}}>
+        <IconButton
+          size="sm"
+          variant="plain"
+          color="neutral"
+          onClick={() => {
+            signOut(auth);
+          }}
+        >
           <LogoutRoundedIcon />
         </IconButton>
       </Box>
