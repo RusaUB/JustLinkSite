@@ -1,15 +1,12 @@
+import { Button } from "@mui/joy";
 import { useAuth } from "../../contexts/AuthContext";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase";
 
 function DashBoard() {
-  const { currentUser } = useAuth();
-
   return (
     <div>
-      {currentUser ? (
-        <p>Welcome, {JSON.stringify(currentUser)}!</p>
-      ) : (
-        <p>Loading...</p>
-      )}
+      <Button onClick={()=>{signOut(auth)}}>LogOut</Button>
     </div>
   );
 }
