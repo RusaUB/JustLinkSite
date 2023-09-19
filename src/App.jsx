@@ -5,7 +5,13 @@ import AuthProvider from "./contexts/AuthContext";
 import DashBoard from "./pages/dashboard/Dashboard";
 import ProtectedRoute from "./ProtectedRoute";
 import SettingsPage from "./pages/settings/SettingsPage";
-import MyProfile from "./pages/profile/MyProfile";
+import Courses from "./pages/courses/Courses";
+import Agenda from "./pages/agenda/Agenda";
+import Marks from "./pages/marks/Marks";
+import DocumentsPage from "./pages/documents/DocumentsPage";
+import MeetingPage from "./pages/meeting/MeetingPage";
+import EventPage from "./pages/event/EventPage";
+import MessageApp from "./pages/message/MessagePage";
 
 function App() {
   return (
@@ -24,7 +30,13 @@ function App() {
             }
           >
             <Route path="/settings" element={<SettingsPage />}></Route>
-            <Route path="/profile" element={<MyProfile/> }></Route>
+            <Route path="/courses" element={<Courses/>}></Route>
+            <Route path="/agenda" element={<Agenda/>}></Route>
+            <Route path="/marks" element={<Marks/>}></Route>
+            <Route path="/documents" element={<DocumentsPage/>}></Route>
+            <Route path="/meetings" element={<MeetingPage/>}></Route>
+            <Route path="/event" element={<EventPage/>}></Route>
+            <Route path="/message" element={<MessageApp/>}></Route>
           </Route>
         </Routes>
       </CssVarsProvider>
