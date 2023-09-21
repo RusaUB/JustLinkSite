@@ -14,7 +14,6 @@ function LoginForm() {
   const emailRef = useRef();
   const passRef = useRef();
   const { signup, error,currentUser } = useAuth()
-  console.log(currentUser)
 
   async function handleSubmit(e) {
       e.preventDefault();

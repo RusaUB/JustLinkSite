@@ -12,34 +12,38 @@ import DocumentsPage from "./pages/documents/DocumentsPage";
 import MeetingPage from "./pages/meeting/MeetingPage";
 import EventPage from "./pages/event/EventPage";
 import MessageApp from "./pages/message/MessagePage";
+import DataBaseProvider from './contexts/DataBaseContext';
+
 
 function App() {
   return (
     <AuthProvider>
-      <CssVarsProvider defaultMode="light">
-        <Routes>
-          <Route path="/login">
-            <Route index element={<Login />} />
-          </Route>
-          <Route
-            path="/"
-            element={
-              <ProtectedRoute>
-                <DashBoard />
-              </ProtectedRoute>
-            }
-          >
-            <Route path="/settings" element={<SettingsPage />}></Route>
-            <Route path="/courses" element={<Courses/>}></Route>
-            <Route path="/agenda" element={<Agenda/>}></Route>
-            <Route path="/marks" element={<Marks/>}></Route>
-            <Route path="/documents" element={<DocumentsPage/>}></Route>
-            <Route path="/meetings" element={<MeetingPage/>}></Route>
-            <Route path="/event" element={<EventPage/>}></Route>
-            <Route path="/message" element={<MessageApp/>}></Route>
-          </Route>
-        </Routes>
-      </CssVarsProvider>
+      <DataBaseProvider>
+        <CssVarsProvider defaultMode="light">
+          <Routes>
+            <Route path="/login">
+              <Route index element={<Login />} />
+            </Route>
+            <Route
+              path="/"
+              element={
+                <ProtectedRoute>
+                  <DashBoard />
+                </ProtectedRoute>
+              }
+            >
+              <Route path="/settings" element={<SettingsPage />}></Route>
+              <Route path="/courses" element={<Courses />}></Route>
+              <Route path="/agenda" element={<Agenda />}></Route>
+              <Route path="/marks" element={<Marks />}></Route>
+              <Route path="/documents" element={<DocumentsPage />}></Route>
+              <Route path="/meetings" element={<MeetingPage />}></Route>
+              <Route path="/event" element={<EventPage />}></Route>
+              <Route path="/message" element={<MessageApp />}></Route>
+            </Route>
+          </Routes>
+        </CssVarsProvider>
+      </DataBaseProvider>
     </AuthProvider>
   );
 }

@@ -29,8 +29,12 @@ import CountrySelector from "../../components/dashboard/CountrySelector";
 import EditorToolbar from "../../components/dashboard/EditorToolbar";
 
 import LinkHeader from "../../components/dashboard/LinkHeader";
+import { useAuth } from "../../contexts/AuthContext";
+import { useDataBase } from "../../contexts/DataBaseContext";
 
 export default function SettingsPage() {
+  const { currentUser } = useAuth();
+
   return (
     <>
       <Box
@@ -112,7 +116,11 @@ export default function SettingsPage() {
                     <AspectRatio
                       ratio="1"
                       maxHeight={200}
-                      sx={{ flex: 1, minWidth: 120, borderRadius: "100%" }}
+                      sx={{
+                        flex: 1,
+                        minWidth: 120,
+                        borderRadius: "100%",
+                      }}
                     >
                       <img
                         src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=286"
@@ -142,65 +150,13 @@ export default function SettingsPage() {
                   <Stack spacing={2} sx={{ flexGrow: 1 }}>
                     <Stack spacing={1}>
                       <FormLabel>Name</FormLabel>
-                      <FormControl
-                        sx={{
-                          display: {
-                            sm: "flex-column",
-                            md: "flex-row",
-                          },
-                          gap: 2,
-                        }}
-                      >
-                        <Input size="sm" placeholder="First name" />
-                        <Input
-                          size="sm"
-                          placeholder="Last name"
-                          sx={{ flexGrow: 1 }}
-                        />
-                      </FormControl>
                     </Stack>
                     <Stack direction="row" spacing={2}>
-                      <FormControl>
-                        <FormLabel>Role</FormLabel>
-                        <Input size="sm" defaultValue="UI Developer" />
-                      </FormControl>
-                      <FormControl sx={{ flexGrow: 1 }}>
-                        <FormLabel>Email</FormLabel>
-                        <Input
-                          size="sm"
-                          type="email"
-                          startDecorator={<EmailRoundedIcon />}
-                          placeholder="email"
-                          defaultValue="siriwatk@test.com"
-                          sx={{ flexGrow: 1 }}
-                        />
-                      </FormControl>
                     </Stack>
                     <div>
                       <CountrySelector />
                     </div>
                     <div>
-                      <FormControl sx={{ display: { sm: "contents" } }}>
-                        <FormLabel>Timezone</FormLabel>
-                        <Select
-                          size="sm"
-                          startDecorator={<AccessTimeFilledRoundedIcon />}
-                          defaultValue="1"
-                        >
-                          <Option value="1">
-                            Indochina Time (Bangkok){" "}
-                            <Typography textColor="text.tertiary" ml={0.5}>
-                              — GMT+07:00
-                            </Typography>
-                          </Option>
-                          <Option value="2">
-                            Indochina Time (Ho Chi Minh City){" "}
-                            <Typography textColor="text.tertiary" ml={0.5}>
-                              — GMT+07:00
-                            </Typography>
-                          </Option>
-                        </Select>
-                      </FormControl>
                     </div>
                   </Stack>
                 </Stack>
@@ -214,7 +170,11 @@ export default function SettingsPage() {
                       <AspectRatio
                         ratio="1"
                         maxHeight={108}
-                        sx={{ flex: 1, minWidth: 108, borderRadius: "100%" }}
+                        sx={{
+                          flex: 1,
+                          minWidth: 108,
+                          borderRadius: "100%",
+                        }}
                       >
                         <img
                           src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=286"
@@ -243,62 +203,13 @@ export default function SettingsPage() {
                     </Stack>
                     <Stack spacing={1} sx={{ flexGrow: 1 }}>
                       <FormLabel>Name</FormLabel>
-                      <FormControl
-                        sx={{
-                          display: {
-                            sm: "flex-column",
-                            md: "flex-row",
-                          },
-                          gap: 2,
-                        }}
-                      >
-                        <Input size="sm" placeholder="First name" />
-                        <Input size="sm" placeholder="Last name" />
-                      </FormControl>
                     </Stack>
                   </Stack>
-
-                  <FormControl>
-                    <FormLabel>Role</FormLabel>
-                    <Input size="sm" defaultValue="UI Developer" />
-                  </FormControl>
-                  <FormControl sx={{ flexGrow: 1 }}>
-                    <FormLabel>Email</FormLabel>
-                    <Input
-                      size="sm"
-                      type="email"
-                      startDecorator={<EmailRoundedIcon />}
-                      placeholder="email"
-                      defaultValue="siriwatk@test.com"
-                      sx={{ flexGrow: 1 }}
-                    />
-                  </FormControl>
 
                   <div>
                     <CountrySelector />
                   </div>
                   <div>
-                    <FormControl sx={{ display: { sm: "contents" } }}>
-                      <FormLabel>Timezone</FormLabel>
-                      <Select
-                        size="sm"
-                        startDecorator={<AccessTimeFilledRoundedIcon />}
-                        defaultValue="1"
-                      >
-                        <Option value="1">
-                          Indochina Time (Bangkok){" "}
-                          <Typography textColor="text.tertiary" ml={0.5}>
-                            — GMT+07:00
-                          </Typography>
-                        </Option>
-                        <Option value="2">
-                          Indochina Time (Ho Chi Minh City){" "}
-                          <Typography textColor="text.tertiary" ml={0.5}>
-                            — GMT+07:00
-                          </Typography>
-                        </Option>
-                      </Select>
-                    </FormControl>
                   </div>
                 </Stack>
                 <CardOverflow
