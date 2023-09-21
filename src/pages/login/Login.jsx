@@ -7,11 +7,13 @@ import Typography from "@mui/joy/Typography";
 import LoginForm from "./LoginForm";
 import { useAuth } from "../../contexts/AuthContext";
 import { Navigate } from "react-router-dom";
+import { CircularProgress } from "@mui/joy";
+
 
 export default function Login() {
   const { currentUser,loading } = useAuth();
   if(loading){
-    return <div>loading</div>
+    return <>loding...</>
   }
   if (!currentUser) {
     return (

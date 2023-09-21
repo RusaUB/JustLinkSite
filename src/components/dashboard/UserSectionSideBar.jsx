@@ -22,7 +22,7 @@ function UserSectionSideBar() {
           <Avatar
             variant="outlined"
             size="sm"
-            src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=286"
+            src={currentUserData.img}
           />
           <Box sx={{ minWidth: 0, flex: 1 }}>
             <Typography level="title-sm">{currentUserData.name} {currentUserData.surname}</Typography>

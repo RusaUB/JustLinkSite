@@ -11,27 +11,24 @@ export const useDataBase = () => {
 };
 
 function DataBaseProvider({ children }) {
-  const { currentUser, loading } = useAuth();
+  const { currentUser } = useAuth();
   const [currentUserData, setCurrentUserData] = useState();
-    const [dbLoding,setDbLoading] = useState(true)
+  const [dbLoding, setDbLoading] = useState(true);
   useEffect(() => {
-    if (currentUser && !loading) {
+    if (currentUser) {
       // Check if currentUser is available and not loading
       const userRef = ref(db, "users/" + currentUser.uid);
 
       const unsubscribe = onValue(userRef, (snapshot) => {
         const data = snapshot.val();
         setCurrentUserData(data);
-        setDbLoading(false)
+        setDbLoading(false);
       });
 
       // Cleanup the listener when the component unmounts or when currentUser changes.
       return () => unsubscribe();
-    } else {
-      // If there is no currentUser or still loading, set userData to null.
-      setCurrentUserData(null);
     }
-  }, [currentUser, loading]);
+  }, [currentUser]);
 
   const value = { currentUserData, dbLoding };
 
