@@ -34,7 +34,7 @@ function LinkTabList() {
           }}
         >
           <Tab sx={{ borderRadius: "6px 6px 0 0" }} indicatorInset value={0}>
-            Settings
+            My Profile
           </Tab>
           <Tab sx={{ borderRadius: "6px 6px 0 0" }} indicatorInset value={1}>
             Team

@@ -6,9 +6,11 @@ import Link from "@mui/joy/Link";
 import Box from "@mui/joy/Box";
 import { Typography } from "@mui/joy";
 
-import LinkTabList from "../../components/dashboard/LinkTabList";
+import LinkTabList from "./LinkTabList";
+import { useNavigate } from "react-router-dom";
 
 function LinkHeader() {
+  const navigate = useNavigate();
   return (
     <>
       <Box
@@ -39,22 +41,13 @@ function LinkHeader() {
             <Link
               underline="none"
               color="neutral"
-              href="#some-link"
+              onClick={()=>{navigate('/')}}
               aria-label="Home"
             >
               <HomeRoundedIcon />
             </Link>
-            <Link
-              underline="hover"
-              color="neutral"
-              href="#some-link"
-              fontSize={12}
-              fontWeight={500}
-            >
-              Users
-            </Link>
             <Typography color="primary" fontWeight={500} fontSize={12}>
-              My profile
+              Settings
             </Typography>
           </Breadcrumbs>
           <Typography
@@ -64,7 +57,7 @@ function LinkHeader() {
               mb: 2,
             }}
           >
-            My profile
+            Settings
           </Typography>
         </Box>
         <LinkTabList />

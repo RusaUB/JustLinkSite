@@ -52,3 +52,23 @@ export const toggleMessagesPane = () => {
   }
 };
 
+
+export function getAllDaysInMonth(month, year) {
+  const startDate = new Date(year, month, 1);
+  const endDate = new Date(year, month + 1, 0);
+  const daysInMonth = [];
+
+  for (
+    let date = startDate;
+    date <= endDate;
+    date.setDate(date.getDate() + 1)
+  ) {
+    daysInMonth.push({
+      date: date.getDate(),
+      month: date.toLocaleString("en", { month: "long" }),
+      day: date.toLocaleString("en", { weekday: "short" }),
+    });
+  }
+
+  return daysInMonth;
+}

@@ -4,6 +4,7 @@ import EditRoundedIcon from "@mui/icons-material/EditRounded";
 import CardOverflow from "@mui/joy/CardOverflow";
 import FormLabel from "@mui/joy/FormLabel";
 import IconButton from "@mui/joy/IconButton";
+import EditCardAction from "./EditCardAction";
 
 function ProfileCard({user}) {
     return (
@@ -15,41 +16,23 @@ function ProfileCard({user}) {
           </Typography>
         </Box>
         <Divider />
-        <Stack direction="row" spacing={3} sx={{ my: 1 }}>
-          <Stack direction="column" spacing={1}>
-            <AspectRatio
-              ratio="1"
-              maxHeight={200}
-              sx={{
-                flex: 1,
-                minWidth: {xs:100,md:120},
-                borderRadius: "100%",
-              }}
-            >
+
+        <Stack
+          spacing={3}
+          direction={{ md: "column", lg: "row" }}
+          sx={{ my: 1 }}
+        >
+          <Stack direction="column" sx={{ mb: 2 }}>
+            <div className="rounded-full flex justify-center items-center">
               <img
                 src={user.img}
+                className="h-[120px] w-[120px] rounded-full"
+                style={{ objectFit: "cover" }}
                 srcSet={user.img}
                 loading="lazy"
                 alt=""
               />
-            </AspectRatio>
-            <IconButton
-              aria-label="upload new picture"
-              size="sm"
-              variant="outlined"
-              color="neutral"
-              sx={{
-                bgcolor: "background.body",
-                position: "absolute",
-                zIndex: 2,
-                borderRadius: "50%",
-                left: 100,
-                top: 170,
-                boxShadow: "sm",
-              }}
-            >
-              <EditRoundedIcon />
-            </IconButton>
+            </div>
           </Stack>
           <Stack spacing={2} direction={"column"} sx={{ flexGrow: 1 }}>
             <Stack spacing={1}>
