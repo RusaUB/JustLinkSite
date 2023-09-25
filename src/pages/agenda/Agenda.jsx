@@ -7,15 +7,15 @@ import { Sheet } from "@mui/joy";
 
 const events = [
   {
-    start : moment('2023-09-18T10:30:00').toDate(),
-    end : moment('2023-09-18T12:30:00').toDate(),
-    title : 'JustLinkTest'
-  }
-]
+    start: moment("2023-09-18T10:30:00").toDate(),
+    end: moment("2023-09-18T12:30:00").toDate(),
+    title: "JustLinkTest",
+  },
+];
 
 moment.locale("ko", {
   week: {
-    dow: 1,
+    dow: 1, // Start of the week is Monday
     doy: 1,
   },
 });
@@ -41,6 +41,16 @@ const formats = {
 
 const startOfDay = moment().set({ hour: 8, minute: 0, second: 0 });
 const endOfDay = moment().set({ hour: 19, minute: 0, second: 0 });
+
+const customDayPropGetter = (date) => {
+  if (date.getDay() === 0) {
+    // Sunday
+    return {
+      className: "hidden-day", // Add a class to hide the day
+    };
+  }
+  return {};
+};
 
 const Agenda = (props) => (
   <Sheet
@@ -72,6 +82,7 @@ const Agenda = (props) => (
         min={startOfDay.toDate()}
         max={endOfDay.toDate()}
         formats={formats}
+        dayPropGetter={customDayPropGetter}
       />
     </Sheet>
   </Sheet>
