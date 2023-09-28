@@ -9,7 +9,7 @@ import { Typography } from "@mui/joy";
 import LinkTabList from "./LinkTabList";
 import { useNavigate } from "react-router-dom";
 
-function LinkHeader() {
+function LinkHeader({title,tabs}) {
   const navigate = useNavigate();
   return (
     <>
@@ -47,7 +47,7 @@ function LinkHeader() {
               <HomeRoundedIcon />
             </Link>
             <Typography color="primary" fontWeight={500} fontSize={12}>
-              Settings
+              {title}
             </Typography>
           </Breadcrumbs>
           <Typography
@@ -57,10 +57,10 @@ function LinkHeader() {
               mb: 2,
             }}
           >
-            Settings
+            {title}
           </Typography>
         </Box>
-        <LinkTabList />
+        <LinkTabList tabs={tabs} />
       </Box>
     </>
   );

@@ -23,6 +23,21 @@ import { useAuth } from "../../contexts/AuthContext";
 import { useDataBase } from "../../contexts/DataBaseContext";
 import ProfileCard from "../../components/settings/ProfileCard";
 
+const TabListItems = [
+  {
+    displayName: "My Events",
+    path: "",
+  },
+  {
+    displayName: "Active",
+    path: "",
+  },
+  {
+    displayName: "Finished",
+    path: "",
+  },
+];
+
 export default function SettingsPage() {
   const { currentUser } = useAuth();
   const { currentUserData, dbLoding } = useDataBase();
@@ -59,7 +74,7 @@ export default function SettingsPage() {
               width: "100%",
             }}
           >
-            <LinkHeader />
+            <LinkHeader title={"Settings"} tabs={TabListItems} />
             <Stack
               spacing={4}
               sx={{
@@ -92,7 +107,7 @@ export default function SettingsPage() {
                   },
                 }}
               >
-                <ProfileCard user={currentUserData}/>
+                <ProfileCard user={currentUserData} />
                 <Card>
                   <Box sx={{ mb: 1 }}>
                     <Typography level="title-md">Bio</Typography>

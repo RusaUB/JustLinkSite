@@ -2,7 +2,7 @@ import Tabs from "@mui/joy/Tabs";
 import TabList from "@mui/joy/TabList";
 import Tab, { tabClasses } from "@mui/joy/Tab";
 
-function LinkTabList() {
+function LinkTabList({ tabs }) {
   return (
     <>
       <Tabs
@@ -33,18 +33,16 @@ function LinkTabList() {
             },
           }}
         >
-          <Tab sx={{ borderRadius: "6px 6px 0 0" }} indicatorInset value={0}>
-            My Profile
-          </Tab>
-          <Tab sx={{ borderRadius: "6px 6px 0 0" }} indicatorInset value={1}>
-            Team
-          </Tab>
-          <Tab sx={{ borderRadius: "6px 6px 0 0" }} indicatorInset value={2}>
-            Plan
-          </Tab>
-          <Tab sx={{ borderRadius: "6px 6px 0 0" }} indicatorInset value={3}>
-            Billing
-          </Tab>
+          {tabs.map((item, index) => (
+            <Tab
+              sx={{ borderRadius: "6px 6px 0 0" }}
+              key={index}
+              indicatorInset
+              value={index}
+            >
+              {item.displayName}
+            </Tab>
+          ))}
         </TabList>
       </Tabs>
     </>

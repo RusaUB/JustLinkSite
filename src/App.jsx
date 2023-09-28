@@ -5,7 +5,6 @@ import AuthProvider from "./contexts/AuthContext";
 import DashBoard from "./pages/dashboard/Dashboard";
 import ProtectedRoute from "./ProtectedRoute";
 import SettingsPage from "./pages/settings/SettingsPage";
-import Courses from "./pages/courses/Courses";
 import Agenda from "./pages/agenda/Agenda";
 import Marks from "./pages/marks/Marks";
 import DocumentsPage from "./pages/documents/DocumentsPage";
@@ -33,7 +32,6 @@ function App() {
               }
             >
               <Route path="/settings" element={<SettingsPage />}></Route>
-              <Route path="/courses" element={<Courses />}></Route>
               <Route path="/agenda" element={<Agenda />}></Route>
               <Route path="/marks" element={<Marks />}></Route>
               <Route path="/documents" element={<DocumentsPage />}></Route>

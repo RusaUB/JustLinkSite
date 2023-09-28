@@ -6,7 +6,7 @@ import CardOverflow from "@mui/joy/CardOverflow";
 import Divider from "@mui/joy/Divider";
 import Typography from "@mui/joy/Typography";
 
-export default function OverflowCard() {
+export default function OverflowCard({title}) {
   return (
     <Card variant="outlined" sx={{ flex: 1, cursor:'pointer' }}>
       <CardOverflow>
@@ -20,7 +20,7 @@ export default function OverflowCard() {
         </AspectRatio>
       </CardOverflow>
       <CardContent>
-        <Typography level="title-md">Yosemite National Park</Typography>
+        <Typography level="title-md">{title}</Typography>
         <Typography level="body-sm">California</Typography>
       </CardContent>
     </Card>

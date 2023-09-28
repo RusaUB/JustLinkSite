@@ -76,10 +76,17 @@ function SidebarListItem() {
         </ListItem>
 
         <ListItem>
+          {generateListItemButton(
+            "Events",
+            <HomeRepairServiceIcon />,
+            "/event"
+          )}
+        </ListItem>
+
+        <ListItem>
           {generateListItemButton("Agenda", <ViewAgendaIcon />, "/agenda")}
         </ListItem>
 
-        
         <ListItem>
           {generateListItemButton(
             "Messages",
@@ -92,23 +99,7 @@ function SidebarListItem() {
         </ListItem>
 
         <ListItem>
-          {generateListItemButton(
-            "Courses",
-            <CollectionsBookmarkRoundedIcon />,
-            "/courses"
-          )}
-        </ListItem>
-
-        <ListItem>
           {generateListItemButton("Marks", <SchoolIcon />, "/marks")}
-        </ListItem>
-
-        <ListItem>
-          {generateListItemButton(
-            "Events",
-            <HomeRepairServiceIcon />,
-            "/event"
-          )}
         </ListItem>
 
         <ListItem>
