@@ -1,6 +1,7 @@
 import Tabs from "@mui/joy/Tabs";
 import TabList from "@mui/joy/TabList";
 import Tab, { tabClasses } from "@mui/joy/Tab";
+import { Link } from "react-router-dom";
 
 function LinkTabList({ tabs }) {
   return (
@@ -34,14 +35,16 @@ function LinkTabList({ tabs }) {
           }}
         >
           {tabs.map((item, index) => (
-            <Tab
-              sx={{ borderRadius: "6px 6px 0 0" }}
-              key={index}
-              indicatorInset
-              value={index}
-            >
-              {item.displayName}
-            </Tab>
+            <Link to={item.path}>
+              <Tab
+                sx={{ borderRadius: "6px 6px 0 0" }}
+                key={index}
+                indicatorInset
+                value={index}
+              >
+                {item.displayName}
+              </Tab>
+            </Link>
           ))}
         </TabList>
       </Tabs>

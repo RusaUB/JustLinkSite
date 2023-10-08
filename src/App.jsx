@@ -12,6 +12,8 @@ import MeetingPage from "./pages/meeting/MeetingPage";
 import EventPage from "./pages/event/EventPage";
 import MessageApp from "./pages/message/MessagePage";
 import DataBaseProvider from './contexts/DataBaseContext';
+import CompltedEvents from "./pages/event/CompletedEvents";
+import UserEvents from "./pages/event/UserEvents";
 
 
 function App() {
@@ -36,7 +38,10 @@ function App() {
               <Route path="/marks" element={<Marks />}></Route>
               <Route path="/documents" element={<DocumentsPage />}></Route>
               <Route path="/meetings" element={<MeetingPage />}></Route>
-              <Route path="/event" element={<EventPage />}></Route>
+              <Route path="/event" element={<EventPage />}>
+                <Route path="completed" element={<CompltedEvents />}></Route>
+                <Route path="my_events" element={<UserEvents />}></Route>
+              </Route>
               <Route path="/message" element={<MessageApp />}></Route>
             </Route>
           </Routes>

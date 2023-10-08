@@ -4,27 +4,28 @@ import Box from "@mui/joy/Box";
 import LinkTabList from "../../components/settings/LinkTabList";
 import LinkHeader from "../../components/settings/LinkHeader";
 import { useDataBase } from "../../contexts/DataBaseContext";
+import { Outlet, useLocation } from "react-router-dom";
 
 const TabListItems = [
-  {
-    displayName: "My Events",
-    path: "",
-  },
   {
     displayName: "Active",
     path: "",
   },
   {
+    displayName: "My Events",
+    path: "my_events",
+  },
+  {
     displayName: "Finished",
-    path: "",
+    path: "completed",
   },
 ];
 
 function EventPage() {
   const { eventsData, dbLoding } = useDataBase();
-  console.log(eventsData)
-  if (dbLoding){
-    <></>
+  const location = useLocation();
+  if (dbLoding) {
+    <></>;
   } else {
     return (
       <Box
@@ -56,7 +57,6 @@ function EventPage() {
           }}
         >
           <LinkHeader title={"Events"} tabs={TabListItems} />
-          {/* Increase the padding and adjust the grid settings */}
           <Grid
             container
             spacing={{ xs: 2, md: 3 }}
@@ -73,11 +73,13 @@ function EventPage() {
               },
             }}
           >
-            {eventsData?.map((item, index) => (
-              <Grid xs={2} sm={4} md={4} key={index}>
-                <CourseCard title={item.displayName}/>
-              </Grid>
-            ))}
+            <Outlet />
+            {location.pathname == "/event" &&
+              eventsData.map((item, index) => (
+                <Grid xs={4} sm={4} md={4} key={index}>
+                  <CourseCard item={item} />
+                </Grid>
+              ))}
           </Grid>
         </Box>
       </Box>

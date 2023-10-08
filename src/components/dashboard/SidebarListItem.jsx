@@ -102,17 +102,17 @@ function SidebarListItem() {
           {generateListItemButton("Marks", <SchoolIcon />, "/marks")}
         </ListItem>
 
-        <ListItem>
+        {/* <ListItem>
           {generateListItemButton(
             "Meetings",
             <PermContactCalendarIcon />,
             "/meetings"
           )}
-        </ListItem>
+        </ListItem> */}
 
-        <ListItem>
+        {/* <ListItem>
           {generateListItemButton("Documents", <FolderIcon />, "/documents")}
-        </ListItem>
+        </ListItem> */}
 
         {/* <ListItem>
           <ListItemButton>

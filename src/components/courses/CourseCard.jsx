@@ -6,23 +6,53 @@ import CardOverflow from "@mui/joy/CardOverflow";
 import Divider from "@mui/joy/Divider";
 import Typography from "@mui/joy/Typography";
 
-export default function OverflowCard({title}) {
+// Custom CSS
+const twoLineText = {
+  overflow: "hidden",
+  display: "-webkit-box",
+  WebkitLineClamp: 2, // Number of lines to display
+  WebkitBoxOrient: "vertical",
+};
+
+export default function OverflowCard({ item }) {
+
   return (
-    <Card variant="outlined" sx={{ flex: 1, cursor:'pointer' }}>
-      <CardOverflow>
-        <AspectRatio ratio="2">
-          <img
-            src="https://images.unsplash.com/photo-1532614338840-ab30cf10ed36?auto=format&fit=crop&w=318"
-            srcSet="https://images.unsplash.com/photo-1532614338840-ab30cf10ed36?auto=format&fit=crop&w=318&dpr=2 2x"
-            loading="lazy"
-            alt=""
-          />
-        </AspectRatio>
-      </CardOverflow>
-      <CardContent>
-        <Typography level="title-md">{title}</Typography>
-        <Typography level="body-sm">California</Typography>
-      </CardContent>
-    </Card>
+    <div className="overflow-card-container">
+      <Card variant="outlined" className="overflow-card">
+        <CardOverflow>
+          <AspectRatio ratio="2">
+            <img src={item.img} srcSet={item.img} loading="lazy" alt="" />
+          </AspectRatio>
+        </CardOverflow>
+        <CardContent>
+          <Typography level="title-md" sx={twoLineText}>
+            {item.title}
+          </Typography>
+          <Typography level="body-sm" sx={twoLineText}>
+            {item.description}
+          </Typography>
+        </CardContent>
+        <CardOverflow variant="soft" sx={{ bgcolor: "background.level1" }}>
+          <Divider inset="context" />
+          <CardContent orientation="horizontal">
+            <Typography
+              level="body-xs"
+              fontWeight="md"
+              textColor="text.secondary"
+            >
+              Quartier du Faubourg-du-Roule, Paris
+            </Typography>
+            <Divider orientation="vertical" />
+            <Typography
+              level="body-xs"
+              fontWeight="md"
+              textColor="text.secondary"
+            >
+              {item.startDate} {item.startTime}-{item.endTime}
+            </Typography>
+          </CardContent>
+        </CardOverflow>
+      </Card>
+    </div>
   );
 }
