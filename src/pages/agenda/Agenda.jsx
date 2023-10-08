@@ -4,6 +4,7 @@ import moment from "moment";
 
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { Sheet } from "@mui/joy";
+import { useDataBase } from "../../contexts/DataBaseContext";
 
 const events = [
   {
@@ -52,40 +53,42 @@ const customDayPropGetter = (date) => {
   return {};
 };
 
-const Agenda = (props) => (
-  <Sheet
-    sx={{
-      flex: 1,
-    }}
-  >
+const Agenda = (props) => {
+  return (
     <Sheet
       sx={{
-        position: {
-          xs: "fixed",
-          sm: "sticky",
-        },
-        transition: "transform 0.4s, width 0.4s",
-        zIndex: 100,
-        width: "100%",
-        top: 52,
-        height: "100%",
+        flex: 1,
       }}
     >
-      <Calendar
-        localizer={localizer}
-        startAccessor="start"
-        events={events}
-        endAccessor="end"
-        style={{ width: "100%" }}
-        views={["week"]}
-        defaultView="week"
-        min={startOfDay.toDate()}
-        max={endOfDay.toDate()}
-        formats={formats}
-        dayPropGetter={customDayPropGetter}
-      />
+      <Sheet
+        sx={{
+          position: {
+            xs: "fixed",
+            sm: "sticky",
+          },
+          transition: "transform 0.4s, width 0.4s",
+          zIndex: 100,
+          width: "100%",
+          top: 52,
+          height: "100%",
+        }}
+      >
+        <Calendar
+          localizer={localizer}
+          startAccessor="start"
+          events={events}
+          endAccessor="end"
+          style={{ width: "100%" }}
+          views={["week"]}
+          defaultView="week"
+          min={startOfDay.toDate()}
+          max={endOfDay.toDate()}
+          formats={formats}
+          dayPropGetter={customDayPropGetter}
+        />
+      </Sheet>
     </Sheet>
-  </Sheet>
-);
+  );
+};
 
 export default Agenda;

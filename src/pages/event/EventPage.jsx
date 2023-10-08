@@ -77,7 +77,7 @@ function EventPage() {
             {location.pathname == "/event" &&
               eventsData.map((item, index) => (
                 <Grid xs={4} sm={4} md={4} key={index}>
-                  <CourseCard item={item} />
+                  <CourseCard item={item} itemId = {index} />
                 </Grid>
               ))}
           </Grid>
