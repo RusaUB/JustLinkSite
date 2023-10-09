@@ -5,26 +5,32 @@ import CardContent from "@mui/joy/CardContent";
 import CardOverflow from "@mui/joy/CardOverflow";
 import Divider from "@mui/joy/Divider";
 import Typography from "@mui/joy/Typography";
-import { IconButton } from "@mui/joy";
+import { IconButton, Stack } from "@mui/joy";
 import AddIcon from "@mui/icons-material/Add";
 import { useAuth } from "../../contexts/AuthContext";
 import DoneIcon from "@mui/icons-material/Done";
 import ModalConfirmation from "./ModalConfiramation";
 import { useDataBase } from "../../contexts/DataBaseContext";
+import moment from "moment";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 // Custom CSS
 const twoLineText = {
   overflow: "hidden",
   display: "-webkit-box",
-  WebkitLineClamp: 2, // Number of lines to display
+  WebkitLineClamp: 1, // Number of lines to display for non-mobile
   WebkitBoxOrient: "vertical",
 };
 
-
 export default function OverflowCard({ item, itemId }) {
   const { currentUser } = useAuth();
-  const [open,setOpen] = React.useState(false)
-
+  const [open, setOpen] = React.useState(false);
+  const parse = item.start.split("T");
+  const startDate = moment(parse[0]).format("ddd, DD, MMM");
+  const startForm = parse[1]; //10:30:00
+  const endForm = item.end.split("T")[1]; //10:30:00
+  const start = moment(startForm, "HH:mm:ss").format("HH:mm");
+  const end = moment(endForm, "HH:mm:ss").format("HH:mm");
   return (
     <div className="overflow-card-container">
       <Card variant="outlined">
@@ -63,7 +69,7 @@ export default function OverflowCard({ item, itemId }) {
                 transform: "translateY(50%)",
               }}
               onClick={() => {
-                setOpen(true)
+                setOpen(true);
               }}
             >
               <AddIcon />
@@ -78,28 +84,57 @@ export default function OverflowCard({ item, itemId }) {
             {item.description}
           </Typography>
         </CardContent>
-        <CardOverflow variant="soft" sx={{ bgcolor: "background.level1" }}>
+        <CardOverflow
+          variant="soft"
+          sx={{
+            bgcolor: "background.level1",
+          }}
+        >
           <Divider inset="context" />
-          <CardContent orientation="horizontal">
-            <Typography
-              level="body-xs"
-              fontWeight="md"
-              textColor="text.secondary"
-            >
-              Quartier du Faubourg-du-Roule, Paris
-            </Typography>
+          <CardContent
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+            }}
+            orientation="horizontal"
+          >
+            <div className="flex-[60%] max-w-[60%]">
+              <Typography
+                level="body-xs"
+                fontWeight="md"
+                textColor="text.secondary"
+              >
+                Quartier du Faubourg-du-Roule
+              </Typography>
+            </div>
             <Divider orientation="vertical" />
-            <Typography
-              level="body-xs"
-              fontWeight="md"
-              textColor="text.secondary"
-            >
-              {item.startDate} {item.startTime}-{item.endTime}
-            </Typography>
+            <div>
+              <Stack direction={"column"}>
+                <Typography
+                  level="body-xs"
+                  fontWeight="md"
+                  textColor="text.secondary"
+                >
+                  {startDate}
+                </Typography>
+                <Typography
+                  level="body-xs"
+                  fontWeight="light"
+                  textColor="text.secondary"
+                >
+                  {start}-{end}
+                </Typography>
+              </Stack>
+            </div>
           </CardContent>
         </CardOverflow>
       </Card>
-      <ModalConfirmation item={item} itemId = {itemId} open={open} setOpen={setOpen} />
+      <ModalConfirmation
+        item={item}
+        itemId={itemId}
+        open={open}
+        setOpen={setOpen}
+      />
     </div>
   );
 }
