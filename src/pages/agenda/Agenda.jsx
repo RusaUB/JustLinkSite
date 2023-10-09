@@ -47,14 +47,7 @@ const customDayPropGetter = (date) => {
 };
 
 const Agenda = (props) => {
-  const { eventsData } = useDataBase();
-  const { currentUser } = useAuth();
-
-  const currentUserEvents = eventsData.filter(
-    (event) =>
-      event.participants &&
-      Object.values(event.participants).includes(currentUser.uid)
-  );
+  const { currentUserEvents } = useDataBase();
 
 const events = currentUserEvents.map((event) => ({
   start: moment(event.start).toDate(),
@@ -62,7 +55,6 @@ const events = currentUserEvents.map((event) => ({
   title: event.title,
 }));
 
-  console.log(events);
 
   return (
     <Sheet
