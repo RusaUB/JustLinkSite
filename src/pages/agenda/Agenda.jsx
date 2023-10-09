@@ -5,14 +5,7 @@ import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { Sheet } from "@mui/joy";
 import { useDataBase } from "../../contexts/DataBaseContext";
-
-const events = [
-  {
-    start: moment("2023-09-18T10:30:00").toDate(),
-    end: moment("2023-09-18T12:30:00").toDate(),
-    title: "JustLinkTest",
-  },
-];
+import { useAuth } from "../../contexts/AuthContext";
 
 moment.locale("ko", {
   week: {
@@ -54,6 +47,23 @@ const customDayPropGetter = (date) => {
 };
 
 const Agenda = (props) => {
+  const { eventsData } = useDataBase();
+  const { currentUser } = useAuth();
+
+  const currentUserEvents = eventsData.filter(
+    (event) =>
+      event.participants &&
+      Object.values(event.participants).includes(currentUser.uid)
+  );
+
+const events = currentUserEvents.map((event) => ({
+  start: moment(event.start).toDate(),
+  end: moment(event.end).toDate(),
+  title: event.title,
+}));
+
+  console.log(events);
+
   return (
     <Sheet
       sx={{
