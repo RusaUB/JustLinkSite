@@ -18,7 +18,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 const twoLineText = {
   overflow: "hidden",
   display: "-webkit-box",
-  WebkitLineClamp: 1, // Number of lines to display for non-mobile
+  WebkitLineClamp: 2, // Number of lines to display for non-mobile
   WebkitBoxOrient: "vertical",
 };
 

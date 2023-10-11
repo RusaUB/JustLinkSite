@@ -3,6 +3,8 @@ import Sidebar from "../../components/dashboard/Sidebar";
 import Header from "../../components/dashboard/Header";
 import { Outlet, useLocation } from "react-router-dom";
 import { AspectRatio, Typography } from "@mui/joy";
+import HomeScreen from "../home/HomeScreen";
+
 
 export default function Dashboard() {
   const location = useLocation();
@@ -11,18 +13,7 @@ export default function Dashboard() {
       <Sidebar />
       <Header />
       <Outlet />
-      {location.pathname === "/" && (
-        <Box
-          sx={{
-            flex: 1,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-            <Typography level="h2">JustLink</Typography>
-        </Box>
-      )}
+      {location.pathname === "/" && <HomeScreen/>} 
     </Box>
   );
 }
