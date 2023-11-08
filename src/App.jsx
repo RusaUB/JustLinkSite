@@ -13,7 +13,7 @@ import DataBaseProvider from './contexts/DataBaseContext';
 import CompltedEvents from "./pages/event/CompletedEvents";
 import UserEvents from "./pages/event/UserEvents";
 import CourseMainScreen from "./pages/courses/CourseMainScreen";
-
+import CourseInfo from "./components/courses/CourseInfo";
 
 function App() {
   return (
@@ -36,6 +36,7 @@ function App() {
               <Route path="/agenda" element={<Agenda />}></Route>
               <Route path="/documents" element={<DocumentsPage />}></Route>
               <Route path="/courses" element={<CourseMainScreen />}></Route>
+              <Route path="/courses/:route" element={<CourseInfo />}></Route>
               <Route path="/event" element={<EventPage />}>
                 <Route path="completed" element={<CompltedEvents />}></Route>
                 <Route path="my_events" element={<UserEvents />}></Route>

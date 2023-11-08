@@ -6,26 +6,48 @@ import CardContent from "@mui/joy/CardContent";
 import IconButton from "@mui/joy/IconButton";
 import Typography from "@mui/joy/Typography";
 import BookmarkAdd from "@mui/icons-material/BookmarkAddOutlined";
-import { LinearProgress } from "@mui/joy";
-import {Stack} from "@mui/joy";
-import {Box} from "@mui/joy";
+import { LinearProgress, Tooltip } from "@mui/joy";
+import { Stack } from "@mui/joy";
+import { Box } from "@mui/joy";
+import { useNavigate } from "react-router-dom";
 
-export default function CourseDb({item}) {
-    console.log(item)
+export default function CourseDb({ item }) {
+  const [isHovered, setIsHovered] = React.useState(false);
+  const navigate = useNavigate()
+  const titleStyle = {
+    overflow: "hidden",
+    display: "-webkit-box",
+    WebkitLineClamp: 1,
+    WebkitBoxOrient: "vertical",
+    color: isHovered && "#2196F3",
+    transition: "color 0.1s",
+  };
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+    
   return (
-    <Card>
+    <Card
+      sx={{ cursor: "pointer" }}
+      onClick = {()=>{navigate(`${item.route}`);}}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       <div>
-        <Box sx={{ display: "flex", width:'100%', justifyContent: "space-between" }}>
+        <Box
+          sx={{
+            display: "flex",
+            width: "100%",
+            justifyContent: "space-between",
+          }}
+        >
           <Box>
-            <Typography
-              level="title-lg"
-              sx={{
-                overflow: "hidden",
-                display: "-webkit-box",
-                WebkitLineClamp: 1, // Number of lines to display for non-mobile
-                WebkitBoxOrient: "vertical",
-              }}
-            >
+            <Typography level="title-lg" sx={titleStyle}>
               {item.title}
             </Typography>
             <Typography level="body-sm">April 24 to May 02, 2021</Typography>
@@ -45,9 +67,11 @@ export default function CourseDb({item}) {
       <AspectRatio minHeight="120px" maxHeight="200px">
         <img src={item.img} loading="lazy" alt="" />
       </AspectRatio>
-      <CardContent orientation="horizontal">
-        <LinearProgress determinate />
-      </CardContent>
+      <Tooltip placement="right" title={"20%"} variant="solid">
+        <CardContent>
+          <LinearProgress determinate />
+        </CardContent>
+      </Tooltip>
     </Card>
   );
 }
