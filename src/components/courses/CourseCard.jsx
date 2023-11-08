@@ -10,9 +10,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { useAuth } from "../../contexts/AuthContext";
 import DoneIcon from "@mui/icons-material/Done";
 import ModalConfirmation from "./ModalConfiramation";
-import { useDataBase } from "../../contexts/DataBaseContext";
 import moment from "moment";
-import useMediaQuery from "@mui/material/useMediaQuery";
 
 // Custom CSS
 const twoLineText = {

@@ -6,14 +6,13 @@ import DashBoard from "./pages/dashboard/Dashboard";
 import ProtectedRoute from "./ProtectedRoute";
 import SettingsPage from "./pages/settings/SettingsPage";
 import Agenda from "./pages/agenda/Agenda";
-import Marks from "./pages/marks/Marks";
 import DocumentsPage from "./pages/documents/DocumentsPage";
-import MeetingPage from "./pages/meeting/MeetingPage";
 import EventPage from "./pages/event/EventPage";
 import MessageApp from "./pages/message/MessagePage";
 import DataBaseProvider from './contexts/DataBaseContext';
 import CompltedEvents from "./pages/event/CompletedEvents";
 import UserEvents from "./pages/event/UserEvents";
+import CourseMainScreen from "./pages/courses/CourseMainScreen";
 
 
 function App() {
@@ -35,9 +34,8 @@ function App() {
             >
               <Route path="/settings" element={<SettingsPage />}></Route>
               <Route path="/agenda" element={<Agenda />}></Route>
-              <Route path="/marks" element={<Marks />}></Route>
               <Route path="/documents" element={<DocumentsPage />}></Route>
-              <Route path="/meetings" element={<MeetingPage />}></Route>
+              <Route path="/courses" element={<CourseMainScreen />}></Route>
               <Route path="/event" element={<EventPage />}>
                 <Route path="completed" element={<CompltedEvents />}></Route>
                 <Route path="my_events" element={<UserEvents />}></Route>

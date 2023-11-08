@@ -14,8 +14,8 @@ import Box from "@mui/joy/Box";
 import ViewAgendaIcon from "@mui/icons-material/ViewAgenda";
 import SchoolIcon from "@mui/icons-material/School";
 import FolderIcon from "@mui/icons-material/Folder";
-import PermContactCalendarIcon from "@mui/icons-material/PermContactCalendar";
 import HomeRepairServiceIcon from "@mui/icons-material/HomeRepairService";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 function generateListItemButton(text, icon, path,children) {
   const isActive = location.pathname === path;
@@ -76,6 +76,10 @@ function SidebarListItem() {
         </ListItem>
 
         <ListItem>
+          {generateListItemButton("Courses", <SchoolIcon />, "/courses")}
+        </ListItem>
+
+        <ListItem>
           {generateListItemButton(
             "Events",
             <HomeRepairServiceIcon />,
@@ -98,10 +102,6 @@ function SidebarListItem() {
           )}
         </ListItem>
 
-        <ListItem>
-          {generateListItemButton("Marks", <SchoolIcon />, "/marks")}
-        </ListItem>
-
         {/* <ListItem>
           {generateListItemButton(
             "Meetings",
@@ -110,49 +110,10 @@ function SidebarListItem() {
           )}
         </ListItem> */}
 
-        {/* <ListItem>
+        <ListItem>
           {generateListItemButton("Documents", <FolderIcon />, "/documents")}
-        </ListItem> */}
+        </ListItem>
 
-        {/* <ListItem>
-          <ListItemButton>
-            <DashboardRoundedIcon />
-            <ListItemContent>
-              <Typography level="title-sm">Dashboard</Typography>
-            </ListItemContent>
-          </ListItemButton>
-        </ListItem> */}
-
-        {/* <ListItem nested>
-          <Toggler
-            renderToggle={({ open, setOpen }) => (
-              <ListItemButton onClick={() => setOpen(!open)}>
-                <AssignmentRoundedIcon />
-                <ListItemContent>
-                  <Typography level="title-sm">Tasks</Typography>
-                </ListItemContent>
-                <KeyboardArrowDownIcon
-                  sx={{ transform: open ? "rotate(180deg)" : "none" }}
-                />
-              </ListItemButton>
-            )}
-          >
-            <List sx={{ gap: 0.5 }}>
-              <ListItem sx={{ mt: 0.5 }}>
-                <ListItemButton>All tasks</ListItemButton>
-              </ListItem>
-              <ListItem>
-                <ListItemButton>Backlog</ListItemButton>
-              </ListItem>
-              <ListItem>
-                <ListItemButton>In progress</ListItemButton>
-              </ListItem>
-              <ListItem>
-                <ListItemButton>Done</ListItemButton>
-              </ListItem>
-            </List>
-          </Toggler>
-        </ListItem> */}
 
         {/* <ListItem nested>
           <Toggler

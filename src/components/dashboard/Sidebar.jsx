@@ -2,11 +2,9 @@ import * as React from "react";
 import GlobalStyles from "@mui/joy/GlobalStyles";
 import Box from "@mui/joy/Box";
 import IconButton from "@mui/joy/IconButton";
-import Input from "@mui/joy/Input";
 import { listItemButtonClasses } from "@mui/joy/ListItemButton";
 import Typography from "@mui/joy/Typography";
 import Sheet from "@mui/joy/Sheet";
-import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import BadgeRoundedIcon from "@mui/icons-material/BadgeRounded";
 
 import { closeSidebar } from "../../utils";
@@ -76,11 +74,6 @@ export default function Sidebar() {
         </IconButton>
         <Typography level="title-lg">Profiles</Typography>
       </Box>
-      <Input
-        size="sm"
-        startDecorator={<SearchRoundedIcon />}
-        placeholder="Search"
-      />
       <Box
         sx={{
           minHeight: 0,
