@@ -11,10 +11,7 @@ import PhoneInTalkRoundedIcon from "@mui/icons-material/PhoneInTalkRounded";
 import MoreVertRoundedIcon from "@mui/icons-material/MoreVertRounded";
 import { toggleMessagesPane } from "../../utils";
 
-
-export default function MessagesPaneHeader({
-  sender,
-}) {
+export default function MessagesPaneHeader({ sender }) {
   return (
     <Stack
       direction="row"
@@ -39,7 +36,7 @@ export default function MessagesPaneHeader({
         >
           <ArrowBackIosNewRoundedIcon />
         </IconButton>
-        <Avatar size="lg" src={sender.avatar} />
+        <Avatar size="lg" src={sender.surname} />
         <div>
           <Typography
             fontWeight="lg"
@@ -47,7 +44,7 @@ export default function MessagesPaneHeader({
             component="h2"
             noWrap
             endDecorator={
-              sender.online ? (
+              sender ? (
                 <Chip
                   variant="outlined"
                   size="sm"
@@ -65,10 +62,10 @@ export default function MessagesPaneHeader({
               ) : undefined
             }
           >
-            {sender.name}
+            {sender.surname}
           </Typography>
 
-          <Typography level="body-sm">{sender.username}</Typography>
+          <Typography level="body-sm">{sender.surname}</Typography>
         </div>
       </Stack>
       <Stack spacing={1} direction="row" alignItems="center">

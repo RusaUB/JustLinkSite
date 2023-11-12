@@ -1,7 +1,7 @@
 
 export const users = [
   {
-    name: "Username N.",
+    name: "Username 2.",
     username: "@username",
     avatar: "/static/images/avatar/2.jpg",
     online: true,
@@ -16,32 +16,6 @@ export const users = [
 
 
 
-export const homeCards = [
-  {
-    path: "",
-    bgColor: "#E3F5FF",
-    progressCount: 20,
-  },
-  {
-    title: "",
-    bgColor: "#E5ECF6",
-    path: "",
-    progressCount: 20,
-  },
-  {
-    title: "",
-    path: "",
-    bgColor: "#E3F5FF",
-    progressCount: 20,
-  },
-  {
-    img: "",
-    bgColor: "#E5ECF6",
-    title: "",
-    path: "",
-    progressCount: 20,
-  },
-];
 
 
 export const chats = [

@@ -10,6 +10,9 @@ import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import ChatListItem from "./ChatListItem";
 import { toggleMessagesPane } from "../../utils";
 
+import { ref } from "firebase/database";
+import { database as db } from "../../firebase";
+
 
 
 export default function ChatsPane({
@@ -91,14 +94,15 @@ export default function ChatsPane({
           "--ListItem-paddingX": "1rem",
         }}
       >
-        {chats.map((chat) => (
+        {chats && chats.map((chat, index) => (
           <ChatListItem
-            key={chat.id}
+            key={index}
             {...chat}
             setSelectedChat={setSelectedChat}
             selectedChatId={selectedChatId}
           />
         ))}
+
       </List>
     </Sheet>
   );

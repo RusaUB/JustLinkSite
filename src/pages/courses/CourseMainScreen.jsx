@@ -85,7 +85,7 @@ function CourseMainScreen() {
             flex: 1,
             width: "100%",
             pt: 3,
-            px: { xs: 3, md: 5 },
+            px: { xs: 3, lg:5, xl: 10 },
           }}
         >
           <Box sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -104,7 +104,7 @@ function CourseMainScreen() {
           <Box>
             <Grid
               container
-              spacing={{ xs: 2, md: 3, lg:2 }}
+              spacing={{ xs: 2, md: 3, lg:5 }}
               columns={{ xs: 4, sm:8, md: 12, lg: 12, xl:12 }}
               sx={{
                 flexGrow: 1,
@@ -115,7 +115,7 @@ function CourseMainScreen() {
               }}
             >
               {coursesData.map((item, i) => (
-                <Grid xs={4} sm={4} md={6} lg={4} xl={3} key={i}>
+                <Grid xs={4} sm={4} md={6} lg={4} xl={4} key={i}>
                   <CourseDb key={i} item={item} />
                 </Grid>
               ))}

@@ -3,6 +3,9 @@ import { database as db } from "../../firebase";
 import { ref, onValue } from "firebase/database";
 import { useParams } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
+import { Box, Grid } from "@mui/joy";
+import CourseCardInfo from "./CourseCardInfo";
+import AccordionCoursePanel from "./AccordionCoursePanel";
 
 function CourseInfo() {
   const params = useParams();
@@ -29,18 +32,66 @@ function CourseInfo() {
     }
   }, [currentUser, params]);
 
-
   return (
-    <div>
+    <>
       {courseData ? (
-        <div>
-          <h1>{courseData.title}</h1>
-          {/* Add more details from courseData as needed */}
-        </div>
+        <Box
+          component="main"
+          className="MainContent"
+          sx={{
+            pt: {
+              xs: "calc(12px + var(--Header-height))",
+              md: 3,
+            },
+            pb: {
+              xs: 2,
+              sm: 2,
+              md: 3,
+            },
+            flex: 1,
+            display: "flex",
+            flexDirection: "column",
+            minWidth: 0,
+            height: "100dvh",
+            gap: 1,
+            overflow: "auto",
+          }}
+        >
+          <Box
+            sx={{
+              flex: 1,
+              width: "100%",
+              pt: 3,
+              px: { xs: 3, xl: 10 },
+            }}
+          >
+            <Grid
+              container
+              spacing={{ xs: 2, md: 3, lg: 5 }}
+              columns={{ xs: 4, sm: 8, md: 12, lg: 12, xl: 12 }}
+              sx={{
+                flexGrow: 1,
+                pt: {
+                  md: 3,
+                  xs: 2,
+                },
+              }}
+            >
+              <Grid md={9}>
+                <Box variant='outlined'>
+                  <AccordionCoursePanel/>
+                </Box>
+              </Grid>
+              <Grid md={3}>
+                <CourseCardInfo item={courseData} />
+              </Grid>
+            </Grid>
+          </Box>
+        </Box>
       ) : (
         <p>Loading course data...</p>
       )}
-    </div>
+    </>
   );
 }
 
