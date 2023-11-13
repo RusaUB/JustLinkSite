@@ -16,21 +16,30 @@ export default function MessagesPane({ chat }) {
   const [textAreaValue, setTextAreaValue] = React.useState("");
   const { currentUser } = useAuth();
 
+  const [senderData, setSenderData] = React.useState([]);
+
   React.useEffect(() => {
     setChatMessages(chat.messages);
   }, [chat.messages]);
 
-  
-
-  const [senderData, setSenderData] = React.useState([]);
-
   React.useEffect(() => {
-    const userUidRef = ref(db, "users/" + chat.sender);
-    onValue(userUidRef, (snapshot) => {
-      const data = snapshot.val();
-      setSenderData(data);
-    });
-  }, [chat.sender])
+    const userUidRef =
+      currentUser.uid == chat.sender
+        ? ref(db, "users/" + chat.receiver)
+        : ref(db, "users/" + chat.sender); 
+    
+    onValue(
+      userUidRef,
+      (snapshot) => {
+        const data = snapshot.val();
+        setSenderData(data);
+      },
+      (error) => {
+        console.error("Firebase onValue error:", error);
+      }
+    );
+  }, [chat.sender]);
+
 
   return (
     <>

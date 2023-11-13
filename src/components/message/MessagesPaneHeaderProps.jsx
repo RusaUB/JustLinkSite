@@ -12,6 +12,7 @@ import MoreVertRoundedIcon from "@mui/icons-material/MoreVertRounded";
 import { toggleMessagesPane } from "../../utils";
 
 export default function MessagesPaneHeader({ sender }) {
+
   return (
     <Stack
       direction="row"
@@ -36,7 +37,7 @@ export default function MessagesPaneHeader({ sender }) {
         >
           <ArrowBackIosNewRoundedIcon />
         </IconButton>
-        <Avatar size="lg" src={sender.surname} />
+        <Avatar size="lg" src={sender.img} />
         <div>
           <Typography
             fontWeight="lg"

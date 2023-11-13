@@ -13,6 +13,7 @@ import { toggleMessagesPane } from "../../utils";
 export default function ChatListItem({
   id,
   sender,
+  receiver,
   messages,
   selectedChatId,
   setSelectedChat,
@@ -24,7 +25,7 @@ export default function ChatListItem({
         <ListItemButton
           onClick={() => {
             toggleMessagesPane();
-            setSelectedChat({ id, sender, messages });
+            setSelectedChat({ id, sender, receiver, messages });
           }}
           selected={selected}
           color="neutral"
@@ -35,7 +36,7 @@ export default function ChatListItem({
           }}
         >
           <Stack direction="row" spacing={1.5}>
-            <AvatarWithStatus online={sender} src={sender} />
+            <AvatarWithStatus online={sender} src={sender.img} />
             <Box sx={{ flex: 1 }}>
               <Typography level="title-sm">{sender}</Typography>
               <Typography level="body-sm">{sender}</Typography>

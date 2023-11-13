@@ -10,9 +10,6 @@ import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import ChatListItem from "./ChatListItem";
 import { toggleMessagesPane } from "../../utils";
 
-import { ref } from "firebase/database";
-import { database as db } from "../../firebase";
-
 
 
 export default function ChatsPane({

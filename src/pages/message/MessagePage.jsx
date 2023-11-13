@@ -10,34 +10,43 @@ import { ref, onValue } from "firebase/database";
 import { useEffect } from "react";
 import { useAuth } from "../../contexts/AuthContext";
 
-
 export default function MyProfile() {
-  
   const [chatData, setChatData] = React.useState([]);
   const [selectedChat, setSelectedChat] = React.useState();
   const currentUser = useAuth();
 
+  console.log(currentUser.currentUser.uid)
+
   useEffect(() => {
     if (currentUser) {
-      const eventRef = ref(db, "chats/");
+      const chatsRef = ref(db, "chats/");
 
-      const unsubscribeEvents = onValue(eventRef, (snapshot) => {
+      const unsubscribeChats = onValue(chatsRef, (snapshot) => {
         const data = snapshot.val();
-        setChatData(data);
+
+        // Filter chats where currentUser is the sender or receiver
+        const filteredChats = data.filter(
+          (chat) =>
+            chat.sender === currentUser.currentUser.uid ||
+            chat.receiver === currentUser.currentUser.uid
+        );
+
+        setChatData(filteredChats);
 
         // Check if data is not empty before setting selectedChat
-        if (data && data.length > 0) {
-          setSelectedChat(data[0]);
+        if (filteredChats.length > 0) {
+          setSelectedChat(filteredChats[0]);
         }
       });
 
       // Cleanup the listener when the component unmounts or when currentUser changes.
       return () => {
-        unsubscribeEvents();
+        unsubscribeChats();
       };
     }
   }, [currentUser]);
 
+  console.log(chatData)
 
   return (
     <>
