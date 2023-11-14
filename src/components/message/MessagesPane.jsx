@@ -92,13 +92,31 @@ export default function MessagesPane({ chat }) {
             setTextAreaValue={setTextAreaValue}
             onSubmit={async () => {
               const newId = chatMessages.length;
+              const currentDate = new Date();
+              const year = currentDate.getFullYear();
+              const month = (currentDate.getMonth() + 1)
+                .toString()
+                .padStart(2, "0");
+              const day = currentDate.getDate().toString().padStart(2, "0");
+              const hours = currentDate.getHours().toString().padStart(2, "0");
+              const minutes = currentDate
+                .getMinutes()
+                .toString()
+                .padStart(2, "0");
+              const seconds = currentDate
+                .getSeconds()
+                .toString()
+                .padStart(2, "0");
+
+              const isoFormattedTime = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
+
               // Update chatMessages state after adding the message
               setChatMessages((prevMessages) => [
                 ...prevMessages,
                 addMessage(chat.id, newId, currentUser.uid, {
                   sender: currentUser.uid,
                   content: textAreaValue,
-                  timestamp: "2023-11-12T10:30:00",
+                  timestamp: isoFormattedTime, // Keep the format as needed
                 }),
               ]);
 

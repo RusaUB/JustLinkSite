@@ -45,7 +45,7 @@ export default function ChatsPane({
               size="md"
               slotProps={{ root: { component: "span" } }}
             >
-              4
+              2
             </Chip>
           }
           sx={{ mr: "auto" }}

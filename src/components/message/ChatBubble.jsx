@@ -9,6 +9,7 @@ import CelebrationOutlinedIcon from "@mui/icons-material/CelebrationOutlined";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import InsertDriveFileRoundedIcon from "@mui/icons-material/InsertDriveFileRounded";
 
+import TimeDisplay from "../general/TimeDisplay";
 
 export default function ChatBubble({
   content,
@@ -30,9 +31,8 @@ export default function ChatBubble({
         spacing={2}
         sx={{ mb: 0.25 }}
       >
-        <Typography level="body-xs">
-        </Typography>
-        <Typography level="body-xs">{timestamp}</Typography>
+        <Typography level="body-xs"></Typography>
+        <TimeDisplay timestamp={timestamp} />
       </Stack>
       {attachment ? (
         <Sheet
