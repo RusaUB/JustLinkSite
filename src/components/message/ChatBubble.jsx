@@ -31,7 +31,6 @@ export default function ChatBubble({
         sx={{ mb: 0.25 }}
       >
         <Typography level="body-xs">
-          {sender === "You" ? sender : sender.name}
         </Typography>
         <Typography level="body-xs">{timestamp}</Typography>
       </Stack>

@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useAuth } from "./AuthContext";
 import { database as db } from "../firebase";
 import { ref, onValue } from "firebase/database";
-import { set, get, push } from "firebase/database";
+import { set, get, push, update } from "firebase/database";
 
 const DataBaseContext = React.createContext();
 
@@ -33,14 +33,6 @@ function DataBaseProvider({ children }) {
     }
   }, [currentUser]);
 
-  const getUserFromUid = (uid) => {
-    const userUidRef = ref(db, "users/" + uid);
-    onValue(userUidRef, (snapshot) => {
-      const data = snapshot.val();
-      return data
-    });
-  };
-
   useEffect(() => {
     if (currentUser) {
       const eventRef = ref(db, "events/");
@@ -64,35 +56,25 @@ function DataBaseProvider({ children }) {
       Object.values(event.participants).includes(currentUser.uid)
   );
 
-  const addParticipant = (eventId, userId) => {
+  const addParticipant = (chatId, userId) => {
     if (userId) {
       // Reference to the `participants` object under the event
-      const participantsRef = ref(db, `/events/${eventId}/participants`);
+      const participantsRef = ref(db, `/events/${chatId}/`);
       // Check if the user is already a participant
       get(participantsRef)
         .then((snapshot) => {
           const participantsData = snapshot.val();
-
-          if (
-            participantsData &&
-            Object.values(participantsData).includes(userId)
-          ) {
-            console.log(
-              `User ${userId} is already a participant of event ${eventId}`
-            );
-          } else {
-            // Push a new child with an auto-generated key and set the value to the user ID
-            const newParticipantRef = push(participantsRef);
-            set(newParticipantRef, userId)
-              .then(() => {
-                console.log(
-                  `User ${userId} added to the participants of event ${eventId}`
-                );
-              })
-              .catch((error) => {
-                console.error("Error adding participant:", error);
-              });
-          }
+          // Push a new child with an auto-generated key and set the value to the user ID
+          const newParticipantRef = push(participantsRef);
+          set(newParticipantRef, userId)
+            .then(() => {
+              console.log(
+                `User ${userId} added to the participants of event ${eventId}`
+              );
+            })
+            .catch((error) => {
+              console.error("Error adding participant:", error);
+            });
         })
         .catch((error) => {
           console.error("Error checking participant:", error);
@@ -102,13 +84,26 @@ function DataBaseProvider({ children }) {
     }
   };
 
+  const addMessage = (chatId, messageId, userId, data) => {
+    if (userId) {
+      const messagePath = `/chats/${chatId}/messages/${messageId}`;
+
+      // Set the message data at the specified path
+      update(ref(db), {
+        [messagePath]: data,
+      });
+    } else {
+      console.log("No user ID");
+    }
+  };
+
   const value = {
     dbLoading,
     eventsData,
     currentUserEvents,
     addParticipant,
     coursesData,
-    getUserFromUid,
+    addMessage,
   };
 
   return (

@@ -10,6 +10,7 @@ import { useAuth } from "../../contexts/AuthContext";
 import { ref, onValue } from "firebase/database";
 
 import { database as db } from "../../firebase";
+import { useDataBase } from "../../contexts/DataBaseContext";
 
 export default function MessagesPane({ chat }) {
   const [chatMessages, setChatMessages] = React.useState(chat.messages);
@@ -17,6 +18,8 @@ export default function MessagesPane({ chat }) {
   const { currentUser } = useAuth();
 
   const [senderData, setSenderData] = React.useState([]);
+
+  const { addMessage } = useDataBase();
 
   React.useEffect(() => {
     setChatMessages(chat.messages);
@@ -26,8 +29,8 @@ export default function MessagesPane({ chat }) {
     const userUidRef =
       currentUser.uid == chat.sender
         ? ref(db, "users/" + chat.receiver)
-        : ref(db, "users/" + chat.sender); 
-    
+        : ref(db, "users/" + chat.sender);
+
     onValue(
       userUidRef,
       (snapshot) => {
@@ -39,7 +42,6 @@ export default function MessagesPane({ chat }) {
       }
     );
   }, [chat.sender]);
-
 
   return (
     <>
@@ -67,7 +69,7 @@ export default function MessagesPane({ chat }) {
           >
             <Stack spacing={2} justifyContent="flex-end">
               {chatMessages.map((message, index) => {
-                const isYou = message.sender === currentUser.uid;
+                const isYou = message?.sender === currentUser.uid;
                 return (
                   <Stack
                     key={index}
@@ -88,18 +90,22 @@ export default function MessagesPane({ chat }) {
           <MessageInput
             textAreaValue={textAreaValue}
             setTextAreaValue={setTextAreaValue}
-            onSubmit={() => {
+            onSubmit={async () => {
               const newId = chatMessages.length + 1;
               const newIdString = newId.toString();
-              setChatMessages([
-                ...chatMessages,
-                {
-                  id: newIdString,
-                  sender: "You",
+
+              // Update chatMessages state after adding the message
+              setChatMessages((prevMessages) => [
+                ...prevMessages,
+                addMessage(chat.id, newId, currentUser.uid, {
+                  sender: currentUser.uid,
                   content: textAreaValue,
-                  timestamp: "Just now",
-                },
+                  timestamp: "2023-11-12T10:30:00",
+                }),
               ]);
+
+              // Reset the text area after sending the message
+              setTextAreaValue("");
             }}
           />
         </Sheet>

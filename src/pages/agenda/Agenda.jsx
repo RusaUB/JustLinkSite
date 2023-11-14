@@ -5,7 +5,6 @@ import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { Sheet } from "@mui/joy";
 import { useDataBase } from "../../contexts/DataBaseContext";
-import { useAuth } from "../../contexts/AuthContext";
 
 moment.locale("ko", {
   week: {

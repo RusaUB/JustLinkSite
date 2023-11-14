@@ -15,8 +15,6 @@ export default function MyProfile() {
   const [selectedChat, setSelectedChat] = React.useState();
   const currentUser = useAuth();
 
-  console.log(currentUser.currentUser.uid)
-
   useEffect(() => {
     if (currentUser) {
       const chatsRef = ref(db, "chats/");
@@ -45,8 +43,6 @@ export default function MyProfile() {
       };
     }
   }, [currentUser]);
-
-  console.log(chatData)
 
   return (
     <>
