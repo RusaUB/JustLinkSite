@@ -23,9 +23,19 @@ export default function TimeDisplay({ timestamp }) {
     } else if (hoursDifference < 24) {
       return `${hoursDifference} hour${hoursDifference > 1 ? "s" : ""} ago`;
     } else if (daysDifference === 1) {
-      return `Yesterday`;
+      const options = {
+        hour: "numeric",
+        minute: "numeric",
+      };
+      return `Yesterday, ${providedTime.toLocaleString("fr-FR", options)}`;
     } else if (daysDifference < 3) {
-      return `${daysDifference} day${daysDifference > 1 ? "s" : ""} ago`;
+      const options = {
+        hour: "numeric",
+        minute: "numeric",
+      };
+      return `${daysDifference} day${
+        daysDifference > 1 ? "s" : ""
+      } ago, ${providedTime.toLocaleString("fr-FR", options)}`;
     } else {
       const options = {
         weekday: "short",
@@ -34,7 +44,6 @@ export default function TimeDisplay({ timestamp }) {
         hour: "numeric",
         minute: "numeric",
       };
-
       const formattedDate = providedTime.toLocaleString("fr-FR", options);
       const currentYear = new Date().getFullYear();
       const providedYear = providedTime.getFullYear();

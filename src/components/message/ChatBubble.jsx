@@ -31,9 +31,9 @@ export default function ChatBubble({
         spacing={2}
         sx={{ mb: 0.25 }}
       >
-        <Typography level="body-xs"></Typography>
         <TimeDisplay timestamp={timestamp} />
       </Stack>
+      
       {attachment ? (
         <Sheet
           variant="outlined"
