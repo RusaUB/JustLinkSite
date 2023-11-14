@@ -15,34 +15,47 @@ export default function MyProfile() {
   const [selectedChat, setSelectedChat] = React.useState();
   const currentUser = useAuth();
 
-  useEffect(() => {
-    if (currentUser) {
-      const chatsRef = ref(db, "chats/");
+useEffect(() => {
+  if (currentUser) {
+    const chatsRef = ref(db, "chats/");
 
-      const unsubscribeChats = onValue(chatsRef, (snapshot) => {
-        const data = snapshot.val();
+    const unsubscribeChats = onValue(chatsRef, (snapshot) => {
+      const data = snapshot.val();
 
-        // Filter chats where currentUser is the sender or receiver
-        const filteredChats = data.filter(
-          (chat) =>
-            chat.sender === currentUser.currentUser.uid ||
-            chat.receiver === currentUser.currentUser.uid
+      // Filter chats where currentUser is the sender or receiver
+      const filteredChats = data.filter(
+        (chat) =>
+          chat.sender === currentUser.currentUser.uid ||
+          chat.receiver === currentUser.currentUser.uid
+      );
+
+      setChatData(filteredChats);
+
+      // Check if selectedChat is from the filteredChats
+      const chatExists = filteredChats.some(
+        (chat) => chat.id === selectedChat?.id
+      );
+
+      // Check if data is not empty and if the selectedChat still exists in filteredChats
+      if (filteredChats.length > 0 && chatExists) {
+        setSelectedChat(
+          filteredChats.find((chat) => chat.id === selectedChat.id)
         );
+      } else if (filteredChats.length > 0) {
+        // If selectedChat doesn't exist anymore, set the first chat from filteredChats
+        setSelectedChat(filteredChats[0]);
+      } else {
+        setSelectedChat(null); // No chats available
+      }
+    });
 
-        setChatData(filteredChats);
+    // Cleanup the listener when the component unmounts or when currentUser changes.
+    return () => {
+      unsubscribeChats();
+    };
+  }
+}, [currentUser, selectedChat]);
 
-        // Check if data is not empty before setting selectedChat
-        if (filteredChats.length > 0) {
-          setSelectedChat(filteredChats[0]);
-        }
-      });
-
-      // Cleanup the listener when the component unmounts or when currentUser changes.
-      return () => {
-        unsubscribeChats();
-      };
-    }
-  }, [currentUser]);
 
   return (
     <>
