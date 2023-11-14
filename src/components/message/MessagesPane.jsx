@@ -55,7 +55,6 @@ export default function MessagesPane({ chat }) {
           }}
         >
           <MessagesPaneHeader sender={senderData} />
-
           <Box
             sx={{
               display: "flex",
@@ -86,24 +85,29 @@ export default function MessagesPane({ chat }) {
               })}
             </Stack>
           </Box>
-
           <MessageInput
             textAreaValue={textAreaValue}
             setTextAreaValue={setTextAreaValue}
             onSubmit={async () => {
-              const newId = chatMessages.length;
-              // Update chatMessages state after adding the message
-              setChatMessages((prevMessages) => [
-                ...prevMessages,
-                addMessage(chat.id, newId, currentUser.uid, {
-                  sender: currentUser.uid,
-                  content: textAreaValue,
-                  timestamp: "2023-11-12T10:30:00",
-                }),
-              ]);
+              const newMessage = {
+                sender: currentUser.uid,
+                content: textAreaValue,
+                timestamp: new Date().toISOString(), // Use the current time for the timestamp
+              };
 
-              // Reset the text area after sending the message
-              setTextAreaValue("");
+              try {
+                // Add the message to the database
+                const addedMessage = await addMessage(chat.id, newMessage); // Assuming addMessage handles adding the message properly
+
+                // Update chatMessages state after adding the message
+                setChatMessages((prevMessages) => [
+                  ...prevMessages,
+                  addedMessage,
+                ]);
+                setTextAreaValue("");
+              } catch (error) {
+                console.error("Error adding message:", error);
+              }
             }}
           />
         </Sheet>
