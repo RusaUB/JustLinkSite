@@ -91,9 +91,7 @@ export default function MessagesPane({ chat }) {
             textAreaValue={textAreaValue}
             setTextAreaValue={setTextAreaValue}
             onSubmit={async () => {
-              const newId = chatMessages.length + 1;
-              const newIdString = newId.toString();
-
+              const newId = chatMessages.length;
               // Update chatMessages state after adding the message
               setChatMessages((prevMessages) => [
                 ...prevMessages,
