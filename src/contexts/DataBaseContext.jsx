@@ -16,6 +16,28 @@ function DataBaseProvider({ children }) {
   const [coursesData, setCoursesData] = useState([]);
   const [dbLoading, setDbLoading] = useState(true);
 
+
+  const [currentUserData, setCurrentUserData] = useState()
+
+
+  useEffect(() => {
+    if(currentUser){
+      const userUidRef = ref(db, "users/" + currentUser.uid)
+  
+      onValue(
+        userUidRef,
+        (snapshot) => {
+          const data = snapshot.val();
+          setCurrentUserData(data);
+          console.log('data =',data)
+        },
+        (error) => {
+          console.error("Firebase onValue error:", error);
+        }
+      );
+    }
+  }, [currentUser]);
+
   useEffect(() => {
     if (currentUser) {
       const eventRef = ref(db, "courses/");
@@ -104,6 +126,7 @@ function DataBaseProvider({ children }) {
     addParticipant,
     coursesData,
     addMessage,
+    currentUserData,
   };
 
   return (
