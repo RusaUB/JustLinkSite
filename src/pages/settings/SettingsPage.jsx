@@ -39,10 +39,9 @@ const TabListItems = [
 ];
 
 export default function SettingsPage() {
-  const { currentUser } = useAuth();
-  const { currentUserData, dbLoding } = useDataBase();
-  if (dbLoding){
-    return <></>
+  const { currentUserData } = useDataBase();
+  if (!currentUserData) {
+    return <>Loading...</>;
   } else {
     return (
       <>

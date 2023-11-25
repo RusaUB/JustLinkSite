@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+.slick-slider img {
+  max-width: 100%;
+  /* Ensure images don't exceed slider container width */
+  height: auto;
+  /* Maintain aspect ratio */
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

@@ -8,12 +8,14 @@ import { Typography } from "@mui/joy";
 import { IconButton } from "@mui/joy";
 import { useDataBase } from "../../contexts/DataBaseContext";
 import { useAuth } from "../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 function UserSectionSideBar() {
   const { currentUser } = useAuth();
 
   const { currentUserData } = useDataBase();
 
+  let navigate = useNavigate();
   return (
     <>
       <Divider />
