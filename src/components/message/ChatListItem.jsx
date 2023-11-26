@@ -9,6 +9,12 @@ import CircleIcon from "@mui/icons-material/Circle";
 import AvatarWithStatus from "./AvatarWithStatus";
 import { toggleMessagesPane } from "../../utils";
 
+import { useAuth } from "../../contexts/AuthContext";
+
+import { ref, onValue } from "firebase/database";
+
+import { database as db } from "../../firebase";
+import { useDataBase } from "../../contexts/DataBaseContext";
 
 export default function ChatListItem({
   id,
@@ -19,6 +25,26 @@ export default function ChatListItem({
   setSelectedChat,
 }) {
   const selected = selectedChatId === id;
+  const [senderInfo, setSenderInfo] = React.useState([])
+  const currentUser = useAuth();
+
+    React.useEffect(() => {
+      if (currentUser) {
+        const userUidRef = ref(db, "users/" + sender);
+
+        onValue(
+          userUidRef,
+          (snapshot) => {
+            const data = snapshot.val();
+            setSenderInfo(data);
+          },
+          (error) => {
+            console.error("Firebase onValue error:", error);
+          }
+        );
+      }
+    }, []);
+
   return (
     <React.Fragment>
       <ListItem>
@@ -36,10 +62,10 @@ export default function ChatListItem({
           }}
         >
           <Stack direction="row" spacing={1.5}>
-            <AvatarWithStatus online={sender} src={sender.img} />
+            <AvatarWithStatus online={sender} src={senderInfo.img} />
             <Box sx={{ flex: 1 }}>
-              <Typography level="title-sm">{sender}</Typography>
-              <Typography level="body-sm">{sender}</Typography>
+              <Typography level="title-sm">{senderInfo.name}</Typography>
+              <Typography level="body-sm">{senderInfo.email}</Typography>
             </Box>
             <Box
               sx={{

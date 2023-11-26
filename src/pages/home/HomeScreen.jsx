@@ -1,7 +1,9 @@
 import React from "react";
 import { Box } from "@mui/joy";
 import SliderComponent from "./SliderComponent";
-import { slideItems } from "../../data";
+import { slideItems, newsData } from "../../data";
+import NewsSection from "./NewsSection"; 
+import FAQSection from "./FAQSection";
 
 function HomeScreen() {
   return (
@@ -37,6 +39,8 @@ function HomeScreen() {
           }}
         >
           <SliderComponent data={slideItems} />
+          <NewsSection data = {newsData}/>
+          <FAQSection />
         </Box>
       </Box>
     </>

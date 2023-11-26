@@ -26,7 +26,7 @@ function SliderComponent({ data }) {
     <Slider {...settings} autoplaySpeed={5000} ref={sliderRef} autoplay>
       {data.map((item, index) => (
         <div key={item.id}>
-          <div className="sm:block hidden">
+          <div className="lg:block hidden">
             <img
               src={item.bannerImg}
               style={{
@@ -36,14 +36,12 @@ function SliderComponent({ data }) {
               }}
             />
           </div>
-          
+
           <Stack
             sx={{ height: stackHeight, display: "flex", mt: 3, mb: 2 }}
             direction={isSmallScreen ? "column" : "row"}
             spacing={5}
           >
-
-
             <img className="w-full h-full object-cover" src={item.contentImg} />
 
             <Stack sx={{ width: "100%" }}>
@@ -57,7 +55,14 @@ function SliderComponent({ data }) {
                     printer took a galley of type and scrambled it to make a
                     type specimen book.
                   </Typography>
-                  <Typography>
+                  <Typography
+                    sx={{
+                      display: {
+                        xs: "none",
+                        lg: "block",
+                      },
+                    }}
+                  >
                     Lorem Ipsum is simply dummy text of the printing and
                     typesetting industry. Lorem Ipsum has been the industry's
                     standard dummy text ever since the 1500s, when an unknown

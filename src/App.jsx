@@ -35,8 +35,8 @@ function App() {
               <Route path="/settings" element={<SettingsPage />}></Route>
               <Route path="/agenda" element={<Agenda />}></Route>
               <Route path="/documents" element={<DocumentsPage />}></Route>
-              <Route path="/courses" element={<CourseMainScreen />}></Route>
-              <Route path="/courses/:route" element={<CourseInfo />}></Route>
+              {/* <Route path="/courses" element={<CourseMainScreen />}></Route>
+              <Route path="/courses/:route" element={<CourseInfo />}></Route> */}
               <Route path="/event" element={<EventPage />}>
                 <Route path="completed" element={<CompltedEvents />}></Route>
                 <Route path="my_events" element={<UserEvents />}></Route>

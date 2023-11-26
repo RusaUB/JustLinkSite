@@ -17,6 +17,10 @@ import FolderIcon from "@mui/icons-material/Folder";
 import HomeRepairServiceIcon from "@mui/icons-material/HomeRepairService";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
+import TopicIcon from "@mui/icons-material/Topic";
+
+import GroupIcon from "@mui/icons-material/Group";
+
 function generateListItemButton(text, icon, path,children) {
   const isActive = location.pathname === path;
     const navigate = useNavigate()
@@ -75,8 +79,12 @@ function SidebarListItem() {
           {generateListItemButton("Home", <HomeRoundedIcon />, "/")}
         </ListItem>
 
-        <ListItem>
+        {/* <ListItem>
           {generateListItemButton("Courses", <SchoolIcon />, "/courses")}
+        </ListItem> */}
+
+        <ListItem>
+          {generateListItemButton("Agenda", <ViewAgendaIcon />, "/agenda")}
         </ListItem>
 
         <ListItem>
@@ -88,7 +96,7 @@ function SidebarListItem() {
         </ListItem>
 
         <ListItem>
-          {generateListItemButton("Agenda", <ViewAgendaIcon />, "/agenda")}
+          {generateListItemButton("Topics", <TopicIcon />, "/topic")}
         </ListItem>
 
         <ListItem>
@@ -111,9 +119,12 @@ function SidebarListItem() {
         </ListItem> */}
 
         <ListItem>
-          {generateListItemButton("Documents", <FolderIcon />, "/documents")}
+          {generateListItemButton("Users", <GroupIcon />, "/users")}
         </ListItem>
 
+        <ListItem>
+          {generateListItemButton("Documents", <FolderIcon />, "/documents")}
+        </ListItem>
 
         {/* <ListItem nested>
           <Toggler

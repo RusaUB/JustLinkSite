@@ -89,7 +89,7 @@ export default function MessagesPaneHeader({ sender }) {
             display: { xs: "none", md: "inline-flex" },
           }}
         >
-          View profile
+          Ask for a meeting
         </Button>
 
         <IconButton size="sm" variant="plain" color="neutral">

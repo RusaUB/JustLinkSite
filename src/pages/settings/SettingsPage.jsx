@@ -25,15 +25,11 @@ import ProfileCard from "../../components/settings/ProfileCard";
 
 const TabListItems = [
   {
-    displayName: "My Events",
+    displayName: "Main",
     path: "",
   },
   {
-    displayName: "Active",
-    path: "",
-  },
-  {
-    displayName: "Finished",
+    displayName: "Web",
     path: "",
   },
 ];
@@ -109,42 +105,9 @@ export default function SettingsPage() {
                 <ProfileCard user={currentUserData} />
                 <Card>
                   <Box sx={{ mb: 1 }}>
-                    <Typography level="title-md">Bio</Typography>
+                    <Typography level="title-md">Personal Documents</Typography>
                     <Typography level="body-sm">
-                      Write a short introduction to be displayed on your profile
-                    </Typography>
-                  </Box>
-                  <Divider />
-                  <Stack spacing={2} sx={{ my: 1 }}>
-                    <EditorToolbar />
-                    <Textarea
-                      size="sm"
-                      minRows={4}
-                      sx={{ mt: 1.5 }}
-                      defaultValue="I'm a software developer based in Bangkok, Thailand. My goal is to solve UI problems with neat CSS without using too much JavaScript."
-                    />
-                    <FormHelperText sx={{ mt: 0.75, fontSize: "xs" }}>
-                      275 characters left
-                    </FormHelperText>
-                  </Stack>
-                  <CardOverflow
-                    sx={{ borderTop: "1px solid", borderColor: "divider" }}
-                  >
-                    <CardActions sx={{ alignSelf: "flex-end", pt: 2 }}>
-                      <Button size="sm" variant="outlined" color="neutral">
-                        Cancel
-                      </Button>
-                      <Button size="sm" variant="solid">
-                        Save
-                      </Button>
-                    </CardActions>
-                  </CardOverflow>
-                </Card>
-                <Card>
-                  <Box sx={{ mb: 1 }}>
-                    <Typography level="title-md">Portfolio projects</Typography>
-                    <Typography level="body-sm">
-                      Share a few snippets of your work.
+                      Upload your personal documents
                     </Typography>
                   </Box>
 

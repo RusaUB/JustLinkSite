@@ -10,6 +10,8 @@ import { useRef } from "react";
 import { useAuth } from "../../contexts/AuthContext";
 import { Navigate } from "react-router-dom";
 
+import GoogleIcon from "../../assets/GoogleIcon";
+
 function LoginForm() {
   const emailRef = useRef();
   const passRef = useRef();
@@ -58,6 +60,14 @@ function LoginForm() {
       </Box>
       <Button type="submit" fullWidth>
         Sign in
+      </Button>
+      <Button
+        variant="soft"
+        color="neutral"
+        fullWidth
+        startDecorator={<GoogleIcon />}
+      >
+        Continue with Google
       </Button>
     </form>
   );
