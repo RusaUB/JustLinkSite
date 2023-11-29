@@ -96,7 +96,7 @@ function SidebarListItem() {
         </ListItem>
 
         <ListItem>
-          {generateListItemButton("Topics", <TopicIcon />, "/topic")}
+          {generateListItemButton("Topics", <TopicIcon />, "/topics")}
         </ListItem>
 
         <ListItem>

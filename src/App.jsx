@@ -12,8 +12,7 @@ import MessageApp from "./pages/message/MessagePage";
 import DataBaseProvider from './contexts/DataBaseContext';
 import CompltedEvents from "./pages/event/CompletedEvents";
 import UserEvents from "./pages/event/UserEvents";
-import CourseMainScreen from "./pages/courses/CourseMainScreen";
-import CourseInfo from "./components/courses/CourseInfo";
+import TopicsScreen from "./pages/topcis/TopicsScreen";
 
 function App() {
   return (
@@ -35,6 +34,7 @@ function App() {
               <Route path="/settings" element={<SettingsPage />}></Route>
               <Route path="/agenda" element={<Agenda />}></Route>
               <Route path="/documents" element={<DocumentsPage />}></Route>
+              <Route path="/topics" element={<TopicsScreen/>}></Route>
               {/* <Route path="/courses" element={<CourseMainScreen />}></Route>
               <Route path="/courses/:route" element={<CourseInfo />}></Route> */}
               <Route path="/event" element={<EventPage />}>

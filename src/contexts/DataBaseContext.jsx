@@ -62,10 +62,9 @@ function DataBaseProvider({ children }) {
       const unsubscribeEvents = onValue(eventRef, (snapshot) => {
         const data = snapshot.val();
         setEventsData(data);
-        setDbLoading(false); // Set loading to false when events data is fetched
+        setDbLoading(false); 
       });
 
-      // Cleanup the listener when the component unmounts or when currentUser changes.
       return () => {
         unsubscribeEvents();
       };
