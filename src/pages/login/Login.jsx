@@ -62,26 +62,7 @@ export default function Login() {
                 justifyContent: "space-between",
               }}
             >
-              <Typography
-                fontWeight="lg"
-                startDecorator={
-                  <Box
-                    component="span"
-                    sx={{
-                      width: 24,
-                      height: 24,
-                      background: (theme) =>
-                        `linear-gradient(45deg, ${theme.vars.palette.primary.solidBg}, ${theme.vars.palette.primary.solidBg} 30%, ${theme.vars.palette.primary.softBg})`,
-                      borderRadius: "50%",
-                      boxShadow: (theme) => theme.shadow.md,
-                      "--joy-shadowChannel": (theme) =>
-                        theme.vars.palette.primary.mainChannel,
-                    }}
-                  />
-                }
-              >
-                JustLink
-              </Typography>
+              <img className="w-[30%] h-full" src="https://firebasestorage.googleapis.com/v0/b/reactnative-b900a.appspot.com/o/site%2Flogo_main.svg?alt=media&token=c4a706cd-cfd0-4f0d-8653-9bd9efdaab35" />
             </Box>
             <Box
               component="main"

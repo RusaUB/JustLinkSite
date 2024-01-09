@@ -77,15 +77,22 @@ function DataBaseProvider({ children }) {
       Object.values(event.participants).includes(currentUser.uid)
   );
 
-  const addParticipant = (chatId, userId) => {
-    if (userId) {
-      // Reference to the `participants` object under the event
-      const participantsRef = ref(db, `/events/${chatId}/`);
-      // Check if the user is already a participant
-      get(participantsRef)
-        .then((snapshot) => {
-          const participantsData = snapshot.val();
-          // Push a new child with an auto-generated key and set the value to the user ID
+const addParticipant = (eventId, userId) => {
+  if (userId) {
+    // Reference to the `participants` object under the event
+    const participantsRef = ref(db, `events/${eventId}/participants`);
+
+    // Check if the user is already a participant
+    get(participantsRef)
+      .then((snapshot) => {
+        const participantsData = snapshot.val();
+
+        // Check if the user is already a participant in the event
+        if (
+          !participantsData ||
+          !Object.values(participantsData).includes(userId)
+        ) {
+          // Push a new child with the value of the user ID
           const newParticipantRef = push(participantsRef);
           set(newParticipantRef, userId)
             .then(() => {
@@ -96,14 +103,20 @@ function DataBaseProvider({ children }) {
             .catch((error) => {
               console.error("Error adding participant:", error);
             });
-        })
-        .catch((error) => {
-          console.error("Error checking participant:", error);
-        });
-    } else {
-      console.log("no user id");
-    }
-  };
+        } else {
+          console.log(
+            `User ${userId} is already a participant in event ${eventId}`
+          );
+        }
+      })
+      .catch((error) => {
+        console.error("Error checking participant:", error);
+      });
+  } else {
+    console.log("No user ID");
+  }
+};
+
 
   const addMessage = (chatId, messageId, userId, data) => {
     if (userId) {

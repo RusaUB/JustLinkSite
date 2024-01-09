@@ -13,6 +13,7 @@ import DataBaseProvider from './contexts/DataBaseContext';
 import CompltedEvents from "./pages/event/CompletedEvents";
 import UserEvents from "./pages/event/UserEvents";
 import TopicsScreen from "./pages/topcis/TopicsScreen";
+import UsersPage from "./pages/users/UsersPage";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
                 <Route path="my_events" element={<UserEvents />}></Route>
               </Route>
               <Route path="/message" element={<MessageApp />}></Route>
+              <Route path="/users" element={<UsersPage />}></Route>
             </Route>
           </Routes>
         </CssVarsProvider>
